@@ -2,7 +2,8 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Test application for Adopets Fullstack position",
-  "main": "src/server.ts",
+  "main": "src/server",
+  "typings": "node_modules/@types",
   "scripts": {
     "dev": "ts-node ./src/server.ts",
     "test": "npm test"
@@ -34,7 +35,9 @@
     "typescript": "^3.9.5"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.0.14",
     "@types/typescript": "^2.0.0"
   }

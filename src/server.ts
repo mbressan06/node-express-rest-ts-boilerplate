@@ -3,8 +3,8 @@ import http from 'http';
 import cookieParser from 'cookie-parser'; 
 import fs from 'fs';
 
-require("dotenv-safe").config();
-const bodyParser = require("body-parser")
+require('dotenv-safe').config();
+const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 // Protected route
 app.get('/products', verifyJWT, (req, res, next) => { 
-  console.log("Returnig all products!");
+  console.log('Returnig all products!');
   res.status(200).json([{id:1, product:'Product 1'}]);
 }) 
 
@@ -27,10 +27,10 @@ app.post('/login', (req, res, next) => {
     var privateKey  = fs.readFileSync('./private.key', 'utf8');
     var token = jwt.sign({ id }, privateKey, { 
       expiresIn: 300, // 5min 
-      algorithm:  "RS256" //SHA-256 hash signature
+      algorithm:  'RS256' //SHA-256 hash signature
     }); 
     
-    console.log("Fez login e gerou token!");
+    console.log('Fez login e gerou token!');
     return res.status(200).send({ auth: true, token: token }); 
   }
 
@@ -39,7 +39,7 @@ app.post('/login', (req, res, next) => {
 
 // Logout Route
 app.post('/logout', function(req, res) { 
-    console.log("Logged out and JWT cancelled");
+    console.log('Logged out and JWT cancelled');
     res.status(200).send({ auth: false, token: null }); 
 });
 
@@ -50,16 +50,16 @@ function verifyJWT(req, res, next){
     return res.status(401).send({ auth: false, message: 'No Token, no data.' }); 
   
   var publicKey  = fs.readFileSync('./public.key', 'utf8');
-  jwt.verify(token, publicKey, {algorithm: ["RS256"]}, function(err, decoded) { 
+  jwt.verify(token, publicKey, {algorithm: ['RS256']}, function(err, decoded) { 
     if (err) 
       return res.status(500).send({ auth: false, message: 'Invalid Token.' }); 
     
     req.userId = decoded.id; 
-    console.log("User Id: " + decoded.id)
+    console.log('User Id: ' + decoded.id)
     next(); 
   }); 
 }
 
 var server = http.createServer(app); 
 server.listen(5000);
-console.log("Listening server at port 5000...")
+console.log('Listening server at port 5000...')

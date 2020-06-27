@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Test application for Adopets Fullstack position",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "ts-node ./src/server.ts",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mbressan06/adopets-backend.git"
+  },
+  "keywords": [
+    "adopets",
+    "test",
+    "fullstack"
+  ],
+  "author": "Marcelo Bressan",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mbressan06/adopets-backend/issues"
+  },
+  "homepage": "https://github.com/mbressan06/adopets-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/typescript": "^2.0.0"
+  }
+}

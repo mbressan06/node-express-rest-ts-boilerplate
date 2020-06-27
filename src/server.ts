@@ -1,12 +1,12 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express'; 
-import * as fs from 'fs';
+const fs = require('fs');
 import * as http from 'http'; 
 
 var jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser'); 
 
-const secret = 'secret'; // TODO: implement this  JWT secret as env config
+require("dotenv-safe").config();
 
 const app = express() 
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -22,28 +22,28 @@ app.get('/products', verifyJWT, (req, res, next) => {
 // Login route
 app.post('/login', (req, res, next) => { 
   if(req.body.user === 'luiz' && req.body.pwd === '123'){ 
-      //Auth ok 
-      const id = 1; // TODO: work with ID from database
+      //auth ok 
+      const id = 1; //esse id viria do banco de dados 
       var privateKey  = fs.readFileSync('./private.key', 'utf8');
       var token = jwt.sign({ id }, privateKey, { 
-          expiresIn: 3000, 
+          expiresIn: 300, // 5min 
           algorithm:  "RS256" //SHA-256 hash signature
       }); 
       
-      console.log("Logged in and generated token!");
+      console.log("Fez login e gerou token!");
       return res.status(200).send({ auth: true, token: token }); 
   }
   
-  return res.status(401).send('Invalid login!'); 
+  return res.status(401).send('Login inválido!'); 
 })
 
-//rota de logout
+// Logout Route
 app.post('/logout', function(req, res) { 
     console.log("Logged out and JWT cancelled");
     res.status(200).send({ auth: false, token: null }); 
 });
 
-//função que verifica se o JWT é ok
+// Check if JWT is OK
 function verifyJWT(req, res, next){ 
   var token = req.headers['x-access-token']; 
   if (!token) 

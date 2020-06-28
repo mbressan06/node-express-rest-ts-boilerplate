@@ -16,27 +16,39 @@ API implementada usando:
 
 Serviços externos:
 
- <!-- TODO: Docker creation steps for MySql and Mongo DB -->
-- [MariaDB](https://hub.docker.com/_/mariadb) ou [MySQL](https://hub.docker.com/_/mysql)
-
-`docker run --name mysql -e MYSQL_ROOT_PASSWORD=xxx#123 -d mysql`
+- [Git](https://git-scm.com/downloads)
+- [MySQL](https://www.mysql.com/downloads/)
+- [MongoDB](https://www.mongodb.com/try/download/community)
 
 ## Primeiros passos
 
-Após baixar o projeto, é necessário instalar todas as bibliotecas pendentes:
+Baixe o projeto:
 
-<!-- TODO: All steps for running development application -->
+    git clone https://github.com/mbressan06/adopets-backend.git
+
+Após clonar o projeto, é necessário instalar todas as dependências:
+
 - Use o comando `npm i` para instalar.
 
-Após a instalação, é necessário criar um banco de dados.
+        cd backend
 
-- Use o comando `.\database_reload.ps1` (Windows) ou `.\database_reload.sh` (Mac ou Linux).
+        npm i
 
-Para rodar a aplicação em desenvolvimento, use: `npm run dev`.
+Em seguida é necessário criar um banco de dados MariaDB/MySQL.
 
-Para criar um usuário, edite o arquivo `/commands/database.sql`, colocando um usuário, ou ainda usando o que esteja lá.
+- Use o comando `source` do myqsl para rodar o `./create_db.sql`
 
-Para semear alguns dados de demonstração no banco de dados, use `.\sample_database.ps1` (Windows) ou `.\sample_database.sh` (Mac ou Linux).
+        $ mysql -u [user] -p --default-character-set=utf8
+        Enter password: [password]
+        [mysql]> source ./commands/create_db.sql
+
+- Para semear alguns dados de demonstração no banco de dados, use `.\seed_db.sql` .
+
+        [mysql]> source ./commands/seed_db.sql
+
+Para rodar a aplicação em desenvolvimento, use:
+
+    npm run dev
 
 ## Swagger
 

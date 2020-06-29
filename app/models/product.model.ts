@@ -1,4 +1,4 @@
-import sql from './db';
+import sql from './mysql.model';
 
 // constructor
 const Product = function(product) {

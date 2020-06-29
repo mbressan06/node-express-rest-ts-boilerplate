@@ -36,15 +36,21 @@ Após clonar o projeto, é necessário instalar todas as dependências.
 
 Em seguida é necessário criar um banco de dados MariaDB/MySQL.
 
-- Use o comando `source` do myqsl para rodar o `./create_db.sql` .
+- Use o comando `source` do myqsl para rodar o `./db/create_mysql_db.sql` .
 
         $ mysql -u [user] -p --default-character-set=utf8
         Enter password: [password]
-        [mysql]> source ./db/create_db.sql
+        [mysql]> source ./db/create_mysql_db.sql
 
-- Para semear alguns dados de demonstração no banco de dados, use `.\seed_db.sql` .
+- Para semear alguns dados de demonstração no banco de dados, use `./db/seed_mysql_db.sql` .
 
-        [mysql]> source ./db/seed_db.sql
+        [mysql]> source ./db/seed_mysql_db.sql
+
+Para os log é necessário criar um banco de dados MongoDB/NoSQL.
+
+- Use o comando `source` do myqsl para rodar o `./db/create_mongo_collection.js` .
+
+        mongo adopets ./db/create_mongo_collection.js
 
 Para rodar a aplicação em desenvolvimento:
 

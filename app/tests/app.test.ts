@@ -1,6 +1,6 @@
 import app from '../app';
 import request from 'supertest';
-import connection from '../models/db'
+import mysqlConnection from '../models/mysql.model'
 
 describe("GET /", () => {
   it("Hello API Request", async () => {

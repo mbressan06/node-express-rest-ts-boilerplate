@@ -26,7 +26,7 @@ Baixe o projeto:
 
     git clone https://github.com/mbressan06/adopets-backend.git
 
-Após clonar o projeto, é necessário instalar todas as dependências:
+Após clonar o projeto, é necessário instalar todas as dependências.
 
 - Use o comando `npm i` para instalar.
 
@@ -36,17 +36,17 @@ Após clonar o projeto, é necessário instalar todas as dependências:
 
 Em seguida é necessário criar um banco de dados MariaDB/MySQL.
 
-- Use o comando `source` do myqsl para rodar o `./create_db.sql`
+- Use o comando `source` do myqsl para rodar o `./create_db.sql` .
 
         $ mysql -u [user] -p --default-character-set=utf8
         Enter password: [password]
-        [mysql]> source ./commands/create_db.sql
+        [mysql]> source ./db/create_db.sql
 
 - Para semear alguns dados de demonstração no banco de dados, use `.\seed_db.sql` .
 
-        [mysql]> source ./commands/seed_db.sql
+        [mysql]> source ./db/seed_db.sql
 
-Para rodar a aplicação em desenvolvimento, use:
+Para rodar a aplicação em desenvolvimento:
 
     npm run dev
 

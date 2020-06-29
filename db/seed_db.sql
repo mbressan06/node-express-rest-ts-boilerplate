@@ -1,6 +1,6 @@
 USE `adopets`;
 
-INSERT INTO `users` (`email`, `name`, `active`) VALUES ('teste@adopets.com', 'joão Silva', '1');
+INSERT INTO `users` (`email`, `name`, `active`) VALUES ('teste@adopets.com', 'João Silva', '1');
 INSERT INTO `users` (`email`, `name`, `active`) VALUES ('teste2@adopets.com', 'Maria Souza', '1');
 
 INSERT INTO `product_category` (`name`) VALUES ('Teste');

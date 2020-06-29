@@ -22,7 +22,7 @@ exports.login = (
     const id = 1; //esse id viria do banco de dados 
     var privateKey  = fs.readFileSync('./private.key', 'utf8');
     var token = jwt.sign({ id }, privateKey, { 
-      expiresIn: 300, // 5min 
+      expiresIn: 43200, // 12h 
       algorithm:  'RS256' //SHA-256 hash signature
     }); 
     

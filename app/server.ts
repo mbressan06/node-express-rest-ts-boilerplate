@@ -17,4 +17,8 @@ require('./routes/user.routes')(app);
 
 var server = http.createServer(app); 
 server.listen(5000);
-console.log('Listening server at port 5000...')
+
+// TODO: Remove after development
+//console.log('Listening server at port 5000...')
+
+export default app;

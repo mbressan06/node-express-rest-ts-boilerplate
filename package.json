@@ -6,7 +6,7 @@
   "typings": "node_modules/@types",
   "scripts": {
     "dev": "ts-node ./app/server.ts",
-    "test": "npm test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -38,9 +38,33 @@
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.6",
+    "@types/jest": "^26.0.3",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.14",
+    "@types/supertest": "^2.0.9",
     "@types/typescript": "^2.0.0",
+    "jest": "^26.1.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^26.1.1",
     "tslint": "^6.1.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/tests/*.+(ts|tsx|js)"
+    ]
   }
 }

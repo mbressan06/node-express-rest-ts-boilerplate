@@ -1,4 +1,4 @@
-import { verifyJWT } from '../controllers/jwt.controller';
+import { verifyJWT } from '../helpers/jwt.helper';
 
 module.exports = app => {
   const products = require('../controllers/product.controller.ts');

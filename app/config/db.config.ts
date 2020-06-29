@@ -1,8 +1,10 @@
+import { HOST, USER, PASSWORD, DB } from '../constants/mysql.constants';
+
 const dbConfig = {
-  HOST: 'localhost',
-  USER: 'root',
-  PASSWORD: '',
-  DB: 'adopets'
+  HOST: HOST,
+  USER: USER,
+  PASSWORD: PASSWORD,
+  DB: DB
 };
 
 export default dbConfig;

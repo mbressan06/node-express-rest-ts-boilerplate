@@ -1,4 +1,4 @@
-USE `adopets`;
+USE `heroku_de48e6bb7c3cf93`;
 
 INSERT INTO `users` (`email`, `name`, `active`) VALUES ('teste@adopets.com', 'João Silva', '1');
 INSERT INTO `users` (`email`, `name`, `active`) VALUES ('teste2@adopets.com', 'Maria Souza', '1');

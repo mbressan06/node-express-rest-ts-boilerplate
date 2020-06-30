@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS `adopets`;
+DROP DATABASE IF EXISTS `heroku_de48e6bb7c3cf93`;
 
-CREATE DATABASE `adopets`;
-ALTER DATABASE `adopets` CHARSET = UTF8 COLLATE = utf8_general_ci;
+CREATE DATABASE `heroku_de48e6bb7c3cf93`;
+ALTER DATABASE `heroku_de48e6bb7c3cf93` CHARSET = UTF8 COLLATE = utf8_general_ci;
 
-USE `adopets`;
+USE `heroku_de48e6bb7c3cf93`;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id`          int(11)       NOT NULL PRIMARY KEY AUTO_INCREMENT,

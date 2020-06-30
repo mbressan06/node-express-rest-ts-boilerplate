@@ -6,6 +6,7 @@
   "typings": "node_modules/@types",
   "scripts": {
     "dev": "ts-node ./app/server.ts",
+    "start": "ts-node ./app/server.ts",
     "test": "jest"
   },
   "repository": {

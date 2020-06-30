@@ -1,7 +1,7 @@
 import mysql from 'mysql';
 import mysqlConfig from '../config/mysql.config';
 
-const mysqlConnection = mysql.createConnection({
+const mysqlConnection = mysql.createPool({
   host: mysqlConfig.HOST,
   user: mysqlConfig.USER,
   password: mysqlConfig.PASSWORD,
@@ -9,10 +9,8 @@ const mysqlConnection = mysql.createConnection({
 });
 
 // open the MySQL connection
-mysqlConnection.connect((error: Error) => {
-  if (error) throw error;
-  // TODO: Remove after development
+mysqlConnection.getConnection(() =>{
   console.log('Successfully connected to the MySQL database.');
-});
+})
 
 export default mysqlConnection;

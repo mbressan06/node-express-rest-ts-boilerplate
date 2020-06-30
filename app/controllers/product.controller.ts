@@ -5,7 +5,6 @@ import type {
   NextFunction
 } from 'express';
 
-//import Product from '../models/product.model';
 const Product = require("../models/product.model.ts");
 
 export const create = async (

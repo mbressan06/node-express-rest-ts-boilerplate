@@ -10,6 +10,8 @@ const Product = function(product) {
 };
 
 Product.create = (newProduct, result) => {
+  console.log(newProduct);
+  
   sql.query('INSERT INTO products SET ?', newProduct, (err, res) => {
     if (err) {
       console.log('error: ', err);
@@ -17,7 +19,7 @@ Product.create = (newProduct, result) => {
       return;
     }
 
-    console.log('created customer: ', { id: res.insertId, ...newProduct });
+    console.log('created product: ', { id: res.insertId, ...newProduct });
     result(null, { id: res.insertId, ...newProduct });
   });
 };
@@ -54,10 +56,10 @@ Product.getAll = result => {
   });
 };
 
-Product.updateById = (id, customer, result) => {
+Product.updateById = (id, product, result) => {
   sql.query(
-    'UPDATE products SET email = ?, name = ?, active = ? WHERE id = ?',
-    [customer.email, customer.name, customer.active, id],
+    'UPDATE products SET name = ?, description = ?, category = ?, price = ?, stock = ? WHERE id = ?',
+    [product.name, product.description, product.category, product.category, product.price, product.stock, id],
     (err, res) => {
       if (err) {
         console.log('error: ', err);
@@ -71,8 +73,8 @@ Product.updateById = (id, customer, result) => {
         return;
       }
 
-      console.log('updated customer: ', { id: id, ...customer });
-      result(null, { id: id, ...customer });
+      console.log('updated product: ', { id: id, ...product });
+      result(null, { id: id, ...product });
     }
   );
 };

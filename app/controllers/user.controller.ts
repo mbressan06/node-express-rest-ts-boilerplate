@@ -1,12 +1,11 @@
-import crypto from 'crypto';
 import type {
   Request,
   Response,
   NextFunction
 } from 'express';
 
-//import User from '../models/user.model';
 const User = require("../models/user.model.ts");
+
 export const create = async (
   req: Request,
   res: Response,
@@ -18,17 +17,13 @@ export const create = async (
       message: "Content can not be empty!"
     });
   }
-
-  let mykey = crypto.createCipher('aes-256-cbc', req.body.password);
-  let mystr = mykey.update('abc', 'utf8', 'hex')
-  mystr += mykey.final('hex');
  
   // Create a User
   const user = new User({
     email: req.body.email,
     name: req.body.name,
     active: req.body.active,
-    password: mystr
+    //password: mystr
   });
  
   // Save User in the database

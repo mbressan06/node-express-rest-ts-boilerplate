@@ -10,13 +10,13 @@ module.exports = app => {
   app.get('/products', verifyJWT, products.findAll);
 
   // Retrieve a single User with userId
-  app.get('/products/:userId', verifyJWT, products.findOne);
+  app.get('/products/:productId', verifyJWT, products.findOne);
 
   // Update a User with userId
-  app.put('/products/:userId', verifyJWT, products.update);
+  app.put('/products/:productId', verifyJWT, products.update);
 
   // Delete a User with userId
-  app.delete('/products/:userId', verifyJWT, products.deleteProduct);
+  app.delete('/products/:productId', verifyJWT, products.deleteProduct);
 
   // Create a new User
   app.delete('/products', verifyJWT, products.deleteAll);

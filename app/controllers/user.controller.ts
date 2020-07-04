@@ -23,6 +23,8 @@ export const create = async (
     email: req.body.email,
     name: req.body.name,
     active: req.body.active,
+    hash: req.body.hash,
+    token: req.body.token
     //password: mystr
   });
  

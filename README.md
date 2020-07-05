@@ -29,10 +29,6 @@
 
 ## Getting Start
 
-Download the project:
-
-    git clone https://github.com/mbressan06/adopets-backend.git
-
 Then install the dependencies.
 
 - Use the command `npm i`.

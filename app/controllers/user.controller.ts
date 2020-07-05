@@ -3,6 +3,8 @@ import type {
   Response,
   NextFunction
 } from 'express';
+import bcrypt from 'bcryptjs';
+import { generateHashPassword } from '../helpers/hash.helper';
 
 const User = require("../models/user.model.ts");
 
@@ -17,26 +19,30 @@ export const create = async (
       message: "Content can not be empty!"
     });
   }
- 
-  // Create a User
-  const user = new User({
-    email: req.body.email,
-    name: req.body.name,
-    active: req.body.active,
-    hash: req.body.hash,
-    token: req.body.token
-    //password: mystr
-  });
- 
-  // Save User in the database
-  User.create(user, (err, data): void => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the User."
+
+  generateHashPassword(req.body.password).then(
+    password => {
+      // Create a User
+      const user = new User({
+        email: req.body.email,
+        name: req.body.name,
+        active: 1,
+        hash: password.hash,
+        salt: password.salt
       });
-    else res.send(data);
-  });
+     
+      // Save User in the database
+      User.create(user, (err, data): void => {
+        if (err)
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the User."
+          });
+        else res.send(data);
+      });
+    }
+  );
+  
 
 };
 

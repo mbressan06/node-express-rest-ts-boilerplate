@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email`       varchar(255)  NOT NULL DEFAULT '',
   `name`        varchar(50)   NOT NULL DEFAULT '',
   `active`      boolean       NOT NULL DEFAULT false,
-  `hash`        blob          NOT NULL DEFAULT '',
-  `token`       blob          NOT NULL DEFAULT ''
+  `hash`        text          NOT NULL DEFAULT '',
+  `salt`        text          NOT NULL DEFAULT '',
+  `token`       text          NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `products` (

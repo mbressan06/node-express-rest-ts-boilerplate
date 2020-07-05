@@ -5,8 +5,8 @@ const User = function(user) {
   this.email = user.email;
   this.name = user.name;
   this.active = user.active;
-  this.hash = user.token;
-  this.token = user.hash;
+  this.hash = user.hash;
+  this.salt = user.salt;
 };
 
 User.create = (newUser, result) => {
@@ -37,6 +37,25 @@ User.findById = (userId, result) => {
     }
 
     // not found Customer with the id
+    result({ kind: 'not_found' }, null);
+  });
+};
+
+User.findByEmail = (email, result) => {
+  sql.query(`SELECT * FROM users WHERE email LIKE '%${email}'`, (err, res) => {
+    if (err) {
+      console.log('error: ', err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log('found user: ', res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Customer with the email
     result({ kind: 'not_found' }, null);
   });
 };

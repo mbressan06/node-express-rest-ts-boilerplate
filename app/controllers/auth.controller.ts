@@ -1,9 +1,10 @@
 import fs from 'fs';
 import { Request, Response, NextFunction } from 'express';
+import { verifyPassword } from '../helpers/hash.helper';
+import { ITERATIONS } from '../constants/hash.constants';
 
 const jwt = require('jsonwebtoken');
-
-const User = require("../models/user.model.ts");
+const User = require('../models/user.model');
 
 exports.login = (
   req: Request,
@@ -16,21 +17,43 @@ exports.login = (
       message: "Content can not be empty!"
     });
   }
- 
-  if (req.body.user === 'luiz' && req.body.pwd === '123') { 
-    //auth ok 
-    const id = 1; //esse id viria do banco de dados 
-    var privateKey  = fs.readFileSync('./private.key', 'utf8');
-    var token = jwt.sign({ id }, privateKey, { 
-      expiresIn: 43200, // 12h 
-      algorithm:  'RS256' //SHA-256 hash signature
-    }); 
-    
-    console.log('Fez login e gerou token!');
-    return res.status(200).send({ auth: true, token: token }); 
-  }
+  
+  User.findByEmail(req.body.email, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        return res.status(200).send('Senha ou usuário inválido!');
+      } else {
+        return res.status(401).send('Login inválido!');    
+      }
+    } else {
+        let persistedPassword = {
+          salt: data.salt,
+          iterations: ITERATIONS,
+          hash: data.hash
+        }
 
-  return res.status(401).send('Login inválido!'); 
+        verifyPassword(persistedPassword, req.body.pwd).then(
+          re => {
+            
+              if (re) { 
+                //auth ok 
+                const id = data.id; 
+                var privateKey  = fs.readFileSync('./private.key', 'utf8');
+                var token = jwt.sign({ id }, privateKey, { 
+                  expiresIn: 43200, // 12h 
+                  algorithm:  'RS256' //SHA-256 hash signature
+                }); 
+                
+                console.log('Fez login e gerou token!');
+                return res.status(200).send({ auth: false, token: token, id: id, user: data.user, email: data.email }); 
+              }
+            
+              return res.status(401).send('Login inválido!'); 
+          }
+        )
+    } 
+  });
+
 };
 
 exports.logout = (
@@ -40,4 +63,3 @@ exports.logout = (
   console.log('Logged out and JWT cancelled');
   return res.status(200).send({ auth: false, token: null }); 
 }
-

@@ -45,7 +45,7 @@ exports.login = (
                 }); 
                 
                 console.log('Fez login e gerou token!');
-                return res.status(200).send({ auth: false, token: token, id: id, user: data.user, email: data.email }); 
+                return res.status(200).send({ auth: true, token: token, id: id, user: data.user, email: data.email }); 
               }
             
               return res.status(401).send('Login inválido!'); 

@@ -20,6 +20,7 @@
   ],
   "author": "Marcelo Bressan",
   "license": "UNLICENSED",
+  "private": true,
   "bugs": {
     "url": "https://github.com/mbressan06/adopets-backend/issues"
   },

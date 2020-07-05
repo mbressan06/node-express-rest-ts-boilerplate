@@ -18,7 +18,7 @@ exports.login = (
     });
   }
   
-  User.findByEmail(req.body.email, (err, data) => {
+  User.findByEmail(req.body.user, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         return res.status(200).send('Senha ou usuário inválido!');
@@ -26,15 +26,12 @@ exports.login = (
         return res.status(401).send('Login inválido!');    
       }
     } else {
-        let persistedPassword = {
+        verifyPassword({
           salt: data.salt,
           iterations: ITERATIONS,
           hash: data.hash
-        }
-
-        verifyPassword(persistedPassword, req.body.pwd).then(
+        }, req.body.pwd).then(
           re => {
-            
               if (re) { 
                 //auth ok 
                 const id = data.id; 
@@ -45,7 +42,7 @@ exports.login = (
                 }); 
                 
                 console.log('Fez login e gerou token!');
-                return res.status(200).send({ auth: true, token: token, id: id, user: data.user, email: data.email }); 
+                return res.status(200).send({ auth: true, token: token, id: id, name: data.name, email: data.email }); 
               }
             
               return res.status(401).send('Login inválido!'); 

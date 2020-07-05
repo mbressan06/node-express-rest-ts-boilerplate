@@ -22,9 +22,9 @@
   "license": "UNLICENSED",
   "private": true,
   "bugs": {
-    "url": "https://github.com/mbressan06/react-ts-boilerplate.git/issues"
+    "url": "https://github.com/mbressan06/node-express-rest-ts-boilerplate.git/issues"
   },
-  "homepage": "https://github.com/mbressan06/react-ts-boilerplate.git#readme",
+  "homepage": "https://github.com/mbressan06/node-express-rest-ts-boilerplate.git#readme",
   "dependencies": {
     "@types/dotenv-safe": "^8.1.0",
     "@types/node": "^14.0.14",
